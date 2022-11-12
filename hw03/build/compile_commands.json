@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/build",
+  "command": "/usr/bin/clang++ -Dhw03_EXPORTS -I/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03 -g -fPIC -std=gnu++20 -o CMakeFiles/hw03.dir/contact_list.o -c /home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/contact_list.cpp",
+  "file": "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/contact_list.cpp"
+},
+{
+  "directory": "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/build",
+  "command": "/usr/bin/clang++ -I/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03 -g -std=gnu++20 -o CMakeFiles/runhw03.dir/run.o -c /home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/run.cpp",
+  "file": "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/run.cpp"
+}
+]

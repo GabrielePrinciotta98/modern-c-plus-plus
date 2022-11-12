@@ -1,0 +1,65 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "hw03::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hw03-Debug-5f8af8aaba4c8e8cf884.json",
+					"name" : "hw03",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "runhw03::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-runhw03-Debug-c39a38b6667472e4023c.json",
+					"name" : "runhw03",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03/build",
+		"source" : "/home/gabri/CoC++/hw/gabrieleprinciotta98_tasks/hw03"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
