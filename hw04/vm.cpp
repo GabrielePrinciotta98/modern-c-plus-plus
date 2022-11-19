@@ -103,7 +103,7 @@ vm_state create_vm(bool debug) {
     });
 
     register_instruction(state, "JMP", [](vm_state& vmstate, const item_t item){
-        vmstate.pc = item;
+        vmstate.pc = static_cast<size_t>(item);
         return true;
     });
 
@@ -111,9 +111,7 @@ vm_state create_vm(bool debug) {
         if (vmstate.stack.empty())
             throw vm_stackfail{"empty stack!"};
         if (vmstate.stack.top() == 0)
-        {
-            vmstate.pc = item;
-        }
+            vmstate.pc = static_cast<size_t>(item);
         vmstate.stack.pop();
         return true;
     });
