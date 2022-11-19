@@ -87,6 +87,7 @@ struct vm_state {
     bool debug = false;
 
     // if you need to store more vm state, add it here!
+    std::string output_text = "";
 };
 
 
@@ -146,7 +147,7 @@ std::tuple<item_t, std::string> run(vm_state& vm, const code_t &code);
  * exception thrown when the VM attempts to divide by zero.
  */
 struct div_by_zero : std::runtime_error {
-    using std::runtime_error::runtime_error;
+    using std::runtime_error::runtime_error; //inheritance of std::runtime_error constructor (I guess...)
 };
 
 

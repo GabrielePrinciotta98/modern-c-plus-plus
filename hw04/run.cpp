@@ -17,6 +17,7 @@ void test_vm() {
         "PRINT\n"
         "EXIT\n");
 
+
     std::cout << "initializing vm..." << std::endl;
     // create it in debug-mode!
     vm_state state = create_vm(true);
