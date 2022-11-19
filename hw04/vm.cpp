@@ -227,8 +227,8 @@ std::tuple<item_t, std::string> run(vm_state& vm, const code_t& code) {
         // TODO execute instruction and stop if the action returns false.
         bool execution_result{vm.instruction_actions[op_id](vm, arg)};
         item_t tos{0};
-        
-        tos = vm.stack.top();
+        if (!vm.stack.empty())
+            tos = vm.stack.top();
         std::string out_text{vm.output_text};
         result = std::make_tuple(tos, out_text); 
         if (execution_result == false) 
