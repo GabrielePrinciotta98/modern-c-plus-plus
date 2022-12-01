@@ -16,19 +16,23 @@ struct Invalid {};
 /// into the invalid state, only the semicolon is allowed.
 struct Valid {};
 
-/*
- * TODO: all new states go between here...
- */
-/*
- * ... and here
- */
+struct SelectStmt {};
+
+struct AllColumns {};
+
+struct NamedColumn {};
+
+struct MoreColumns {};
+
+struct FromClause {};
+
+struct TableName {};
 
 } // namespace state
 
 /// variant of all possible states of our finite machine
-/// TODO: Add all the possible states to the variant
-using State =
-    std::variant<state::Start, state::Invalid, state::Valid>;
+using State = std::variant<state::Start, state::Invalid, state::Valid, state::SelectStmt, state::AllColumns, 
+                           state::NamedColumn, state::MoreColumns, state::FromClause, state::TableName>;
 
 /// Transition from the `Start` state to the next state depending on the given
 /// token
@@ -45,13 +49,36 @@ State transition(state::Valid, Token token);
 [[nodiscard]]
 State transition(state::Invalid, Token token);
 
-/*
- * TODO: all of the transition functions from the newly created states go
- * between here...
- */
-/*
- * ... and here
- */
+/// Transition from the `SelectStmt` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::SelectStmt, Token token);
+
+/// Transition from the `AllColumns` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::AllColumns, Token token);
+
+/// Transition from the `NamedColumn` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::NamedColumn, Token token);
+
+/// Transition from the `MoreColumns` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::MoreColumns, Token token);
+
+/// Transition from the `FromClause` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::FromClause, Token token);
+
+/// Transition from the `TableName` state to the next state depending on the given
+/// token
+[[nodiscard]]
+State transition(state::TableName, Token token);
+
 
 /// Our finite state machine.
 /// The initial state is `Start` and based on the given tokens it will move to
@@ -65,6 +92,8 @@ public:
   /// Returns `true` iff the variant is in the `Valid` state
   [[nodiscard]]
   bool is_valid() const;
+
+  bool is_invalid() const;
 
   /// TODO: Implement this member function
   /// Moves from one state to the next given the token.

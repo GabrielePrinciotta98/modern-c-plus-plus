@@ -16,18 +16,22 @@ std::vector<sql::Token> valid_token_stream() {
 std::vector<sql::Token> invalid_token_stream() {
   std::vector<sql::Token> tokens;
 
-  tokens.emplace_back(sql::token::From{});
-  tokens.emplace_back(sql::token::Asterisks{});
   tokens.emplace_back(sql::token::Select{});
-  tokens.emplace_back(sql::token::Identifier{"MY_TABLE"});
-  tokens.emplace_back(sql::token::Semicolon{});
+    tokens.emplace_back(sql::token::Asterisks{});
+    tokens.emplace_back(sql::token::From{});
+    tokens.emplace_back(sql::token::Identifier{"MYTABLE"});
+    tokens.emplace_back(sql::token::Semicolon{});
+    tokens.emplace_back(sql::token::Semicolon{});
+    tokens.emplace_back(sql::token::Semicolon{});
+    tokens.emplace_back(sql::token::Semicolon{});
+
 
   return tokens;
 }
 
 int main() {
   // Change to get an invalid token stream
-  bool get_valid_tokens = true;
+  bool get_valid_tokens = false;
 
   std::vector<sql::Token> tokens;
   if (get_valid_tokens) {
