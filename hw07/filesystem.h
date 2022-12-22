@@ -78,4 +78,6 @@ public:
 
 private:
   // TODO store the files
+  std::vector<std::shared_ptr<File>> files;
+  //std::shared_ptr<Filesystem> self;
 };

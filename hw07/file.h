@@ -73,7 +73,7 @@ protected:
     FileContent content;
 
     // TODO additional member variables
-
+    std::weak_ptr<Filesystem> filesystem;
 private:
     /**
      * The file name.
