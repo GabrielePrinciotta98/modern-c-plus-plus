@@ -26,30 +26,43 @@ public:
     using value_type = V;
 
     template<class... Entries>
-    constexpr CexprMap(Entries&&... entries){/*TODO*/}
+    constexpr CexprMap(Entries&&... entries) : values({{std::forward<Entries>(entries)...}})
+    {
+        verify_no_duplicates();    
+    }
 
     /**
      * Entry count.
      */
     constexpr size_t size() const {
+        return count;
     }
 
     /**
      * Is the key in the map?
      */
     constexpr bool contains(const K &key) const {
+        if (find(key) != values.end())
+            return true;
+        else
+            return false;
     }
 
     /**
      * Get a key's value
      */
     constexpr const V &get(const K &key) const {
+        auto iter = find(key);
+        if (iter == values.end())
+            throw std::out_of_range("key not found");
+        return iter -> second;
     }
 
     /**
      * Get a key's value by map[key].
      */
     constexpr const V &operator [](const K &key) const {
+        return get(key);
     }
 
 private:
@@ -58,6 +71,13 @@ private:
      * Throws std::invalid_argument on duplicate key.
      */
     constexpr void verify_no_duplicates() const {
+        for (size_t i = 0; i < values.size(); i++) {
+            for (size_t j = i + 1; j < values.size(); j++) {
+                if (values[i].first == values[j].first) {
+                    throw std::invalid_argument("duplicate key");
+                }
+            }
+        }
     }
 
     /**
@@ -65,6 +85,11 @@ private:
      *  - `values.end()` if the key is not found.
      */
     constexpr auto find(const K &key) const {
+        for (size_t i = 0; i < values.size(); i++) {
+            if (values[i].first == key)
+                return &values[i];
+        }
+        return values.end();
     }
 
     /**
@@ -82,6 +107,7 @@ private:
  */
 template<typename K, typename V, typename... Entries>
 constexpr auto create_cexpr_map(Entries&&... entry) {
+    return CexprMap<K, V, sizeof...(Entries)>{std::forward<Entries>(entry)...};
 }
 
 /**
@@ -94,4 +120,4 @@ constexpr auto create_cexpr_map(Entries&&... entry) {
  */
 template<typename Entry, typename... Rest>
 requires std::conjunction_v<std::is_same<Entry, Rest>...>
-CexprMap(Entry, Rest&&...) -> /* TODO */;
+CexprMap(Entry, Rest&&...) -> CexprMap<typename Entry::first_type, typename Entry::second_type, sizeof...(Rest) + 1>;
